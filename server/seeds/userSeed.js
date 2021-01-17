@@ -1,9 +1,9 @@
 module.exports = {
-    run: async () => {
-        let users = await MODELS.User.findAll()
+    run: async() => {
+        // console.log('----MODELS', MODELS)
+        let users = await MODELS.user.findAll();
         if (users.length == 0) {
-            users = [
-                {
+            users = [{
                     email: 'john@gmail.com',
                     password: '123'
                 },
@@ -13,7 +13,7 @@ module.exports = {
                     role: "ADMIN"
                 }
             ];
-            await MODELS.User.bulkCreate(users)
+            await MODELS.user.bulkCreate(users)
         }
     }
 };

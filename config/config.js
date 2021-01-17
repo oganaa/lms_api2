@@ -3,32 +3,33 @@ const rootPath = path.normalize(__dirname + "/..");
 const env = process.env.NODE_ENV || "development";
 
 const config = {
-  development: {
-    root: rootPath,
-    app: {
-      name: "nuxt-express-template"
+    host: 'localhost',
+    development: {
+        root: rootPath,
+        app: {
+            name: "nuxt-express-template"
+        },
+        port: process.env.PORT || 3000,
+        db: "mysql://root:1234@localhost:3306/amazon"
     },
-    port: process.env.PORT || 3000,
-    db: "postgres://root:root@localhost:5432/nuxt-dev"
-  },
 
-  test: {
-    root: rootPath,
-    app: {
-      name: "nuxt-express-template"
+    test: {
+        root: rootPath,
+        app: {
+            name: "nuxt-express-template"
+        },
+        port: process.env.PORT || 3000,
+        db: "mysql://root:1234@localhost:3306/amazon"
     },
-    port: process.env.PORT || 3000,
-    db: "postgres://root:root@localhost:5432/nuxt-test"
-  },
 
-  production: {
-    root: rootPath,
-    app: {
-      name: "nuxt-express-template"
-    },
-    port: process.env.PORT || 3000,
-    db: "postgres://root:root@localhost:5432/nuxt-prod"
-  }
+    production: {
+        root: rootPath,
+        app: {
+            name: "nuxt-express-template"
+        },
+        port: process.env.PORT || 3000,
+        db: "mysql://root:1234@localhost:3306/amazon"
+    }
 };
 
 module.exports = config[env];

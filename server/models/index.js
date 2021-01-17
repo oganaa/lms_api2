@@ -5,11 +5,12 @@ const models = {};
 const sequelizeConnection = new Sequelize(config.db);
 
 fs.readdirSync(__dirname)
-  .filter(file => file.indexOf(".") !== 0 && file !== "index.js")
-  .forEach(file => {
-    let model = require("./" + file)(sequelizeConnection, Sequelize);
-    models[model.name] = model.schema;
-  });
+    .filter(file => file.indexOf(".") !== 0 && file !== "index.js" && (file.slice(-3) === '.js'))
+    .forEach(file => {
+        let model = require("./" + file)(sequelizeConnection, Sequelize);
+        console.log('--model name---', file.substring(0, file.length - 3));
+        models[file.substring(0, file.length - 3)] = model;
+    });
 
 
 
