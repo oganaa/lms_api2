@@ -12,12 +12,16 @@ global.MODELS = models
 app.set("port", config_.port);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use("/api", api);
 
 // Import and Set Nuxt.js options
 let config = require("../nuxt.config.js");
 config.dev = !(process.env.NODE_ENV === "production");
-
+MODELS.user.belongsToMany(MODELS.role, { through: MODELS.role_user })
+MODELS.role.belongsToMany(MODELS.user, { through: MODELS.role_user })
+    // MODELS.user.hasMany(MODELS.role_user)
+    // MODELS.role_user.belongsTo(MODELS.user)
 async function start() {
     // Init Nuxt.js
     const nuxt = new Nuxt(config);
